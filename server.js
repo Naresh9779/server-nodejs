@@ -1,12 +1,28 @@
+
 const http=require('http');
-http.createServer((req,res)=>{
+ const fs=require('fs');
+const server=http.createServer((req,res)=>{
     res.write("<h1><b><marquee>Naresh Thapa Word</marquee></b></h1>");
 
-    console.log('Request From browser To Server');
-    console.log(req.url);
-    console.log(req.method);
+    //console.log('Request From browser To Server');
+   // onsole.log(req.url);
+    //console.log(req.method);
+    res.setHeader('Content-Type','txt/html');
+    fs.readFile('./NODEJS/hi.html',(err,FileData)=>
+    {
+if(err)
+{
+    console.log(err);
+}
+else
+{
+    res.end(FileData);
+}
+
+    })
     res.end();
-}).listen(4500,()=>
+});
+server.listen(4500,()=>
     {
    
    console.log('Listinning..............');
