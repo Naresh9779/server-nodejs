@@ -3,12 +3,26 @@ const http=require('http');
  const fs=require('fs');
 const server=http.createServer((req,res)=>{
     res.write("<h1><b><marquee>Naresh Thapa Word</marquee></b></h1>");
+    let path='./Nodejs';
+   switch(req.url())
+   {
+    case '/':
+        path+='/index.html';
+        break;
 
+        default:
+            path+='/404.html'
+
+
+
+
+
+   }
     console.log('Request From browser To Server');
    // onsole.log(req.url);
     //console.log(req.method);
     //res.setHeader('Content-Type','txt/html');
-    fs.readFile('./NODEJS/index.html',(err,FileData)=>
+    fs.readFile(path,(err,FileData)=>
     {
     if(err)
     {
@@ -20,8 +34,9 @@ const server=http.createServer((req,res)=>{
    }   
 
     });
+
     
-}).listen(4500,()=>
+}).listen(5000,()=>
     {
    
    console.log('Listinning..............');
